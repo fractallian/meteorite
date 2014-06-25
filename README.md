@@ -1,3 +1,30 @@
+### Added in this fork
+
+Specifiy a --overrideRoot option to specify an 'override' smart.json file. This is useful if you want to install different package in development than on production.
+
+Example:
+main smart.json
+``` json
+"packages": {
+  "mypackage": "0.1.0"
+}
+```
+
+../dev/smart.json
+``` json
+"packages": {
+  "mypackage": {
+    "path": "../localpathtomypackage"
+  },
+  "dev-only-package": {}
+}
+```
+
+`mrt update --overrideRoot ../dev`
+will generate ../dev/smart.lock and install mypackage from path and dev-only-package
+
+---
+
 # Meteorite
 
 Meteorite is a Meteor version manager and package manager. It provides an easy way to run different versions of meteor, use non-core packages, and to install packages from the [Atmosphere package repository](https://atmosphere.meteor.com/). 
